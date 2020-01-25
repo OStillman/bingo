@@ -11,3 +11,7 @@ Image appLogo = Image.asset('assets/lottery.png');
 //Sizes
 final bigRadius = 66.0;
 final buttonHeight = 24.0;
+
+//Pages
+final homePageTag = "Home Page";
+final callerPageTag = "Caller Page";
