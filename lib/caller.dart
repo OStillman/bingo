@@ -8,6 +8,8 @@ class CallerPage extends StatefulWidget {
 
 class _CallerPageState extends State<CallerPage> {
   List<int> generateNumbers() => List<int>.generate(100, (i) => i + 1);
+  List<int> calledNumbers = [7, 9, 21];
+
   @override
   Widget build(BuildContext context) {
     final currentNumber = Padding(
@@ -24,26 +26,45 @@ class _CallerPageState extends State<CallerPage> {
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: generateNumbers().map((int i) {
-        if (true){
+        bool _there = false;
+        Color _thisColor = colorBody;
+        final numbersCalledLength = calledNumbers.length;
+        for (int calledNumberIndex = 0; calledNumberIndex <
+            numbersCalledLength; calledNumberIndex++) {
+          if (calledNumbers[calledNumberIndex] == i) {
+            _there = true;
+          }
+        }
+        if (_there) {
+          _thisColor = Colors.black;
+        }
+        if (true) {
           return Text(
-              i.toString()
-
+            i.toString(),
+            style: TextStyle(color: _thisColor),
           );
         }
       }).toList(),
     );
 
-    return Scaffold(
+    final nextNumber =
+    FlatButton(
+        onPressed: () {},
+        color: colorBody,
+        child: Text(
+          "Next Number",
+          style: TextStyle(color: Colors.white),
+        ),
+    );
+
+      return Scaffold(
       backgroundColor: colorBody,
       appBar: AppBar(
         title: Text("Bingo Caller"),
       ),
       body: Center(
         child: ListView(
-          children: <Widget>[
-            currentNumber,
-            numberGrid
-          ],
+          children: <Widget>[currentNumber, numberGrid, nextNumber],
         ),
       ),
     );
